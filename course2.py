@@ -1,14 +1,14 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-
+#import Tensorflow and Datasets and Keras API
 import tensorflow as tf
 from tensorflow import keras
 from keras import layers
 from keras.datasets import mnist
-
+#GPU 
 #physical_devices = tf.config.list_physical_devices('GPU')
 #tf.config.experimental.set_memory_growth(physical_devices[0], True)
-
+#load datasets and x reshape 
 (x_train,y_train), (x_test,y_test) = mnist.load_data()
 x_train = x_train.reshape(-1,28*28).astype('float32') / 255.0
 x_test = x_test.reshape(-1,28*28).astype('float32') / 255.0
@@ -28,14 +28,7 @@ model.add(layers.Dense(512, activation='relu'))
 model.add(layers.Dense(256, activation='relu', name = 'my_layer'))
 model.add(layers.Dense(10))
 
-# model = keras.Model(inputs=model.inputs,
-#                     outputs=[layer.output for layer in model.layers]#model.get_layer('my_layer').output
-#                     )
-# features = model.predict(x_train)
-# for feature in features:
-#     print(feature.shape)
-# import sys
-# sys.exit
+
 
 #Funtional API (A bit more Flexible)
 inputs = keras.Input(shape=(784))
